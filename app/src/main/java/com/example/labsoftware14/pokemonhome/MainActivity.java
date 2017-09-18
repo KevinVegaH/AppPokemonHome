@@ -4,12 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.android.volley.*;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,11 +20,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         final TextView mTextView = (TextView) findViewById(R.id.text);
 
+        final TextView mTextView = (TextView) findViewById(R.id.text);
+
+    // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://www.google.com";
 
+    // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -36,11 +41,15 @@ public class MainActivity extends AppCompatActivity {
                 mTextView.setText("That didn't work!");
             }
         });
-// Add the request to the RequestQueue.
+        // Add the request to the RequestQueue.
         queue.add(stringRequest);
+
+
 
 
     }
 
+    }
 
-}
+
+
