@@ -23,11 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView mTextView = (TextView) findViewById(R.id.text);
 
-    // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://www.google.com";
 
-    // Request a string response from the provided URL.
+        // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -42,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
+        PokeSingleton.getInstance(this).addToRequestQueue(stringRequest);
 
 
 
