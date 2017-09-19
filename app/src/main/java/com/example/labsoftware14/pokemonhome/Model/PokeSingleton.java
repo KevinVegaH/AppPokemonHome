@@ -1,4 +1,4 @@
-package com.example.labsoftware14.pokemonhome;
+package com.example.labsoftware14.pokemonhome.Model;
 
 /**
  * Created by labsoftware14 on 18/09/17.
