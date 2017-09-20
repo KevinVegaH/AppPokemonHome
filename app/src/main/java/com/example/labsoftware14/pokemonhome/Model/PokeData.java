@@ -10,11 +10,14 @@ import org.json.*;
 
 public class PokeData {
 
-    private String name;
+    private String name,weight, front_default_url, back_image_url;
     private JSONArray abilities;
-    private String[] namepower;
+    private String[] name_Power;
+    private JSONObject image;
+    private static  JSONObject info_Sprites;
 
     Pokemon pk = new Pokemon();
+    PokeData Pd = new PokeData();
 
     public void getName(JSONObject info){
         try {
@@ -27,6 +30,50 @@ public class PokeData {
 
         }
     }
+
+    public static JSONObject getSprites(JSONObject info){
+        info_Sprites = null;
+        try {
+            info_Sprites = info.getJSONObject("sprites");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return info_Sprites;
+    }
+
+    public void getImage_Front(JSONObject info){
+
+        image = null;
+        image = PokeData.getSprites(info);
+
+        try{
+
+            front_default_url  = image.getString("front_default");
+            pk.setFront_default_url(front_default_url);
+
+        }catch(JSONException e){
+
+            e.printStackTrace();
+
+        }
+
+
+    }
+
+    public void getImage_Back(JSONObject info){
+
+        image = null;
+        image = PokeData.getSprites(info);
+        try {
+            back_image_url = image.getString("back_default");
+            pk.setBack_image_url(back_image_url);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void getName_Power(JSONObject info){
 
             abilities = null;
@@ -37,8 +84,8 @@ public class PokeData {
                 JSONObject c = abilities.getJSONObject(i);
 
                 JSONObject ability = c.getJSONObject("ability");
-                namepower[i] = ability.getString("name");
-                pk.setName_Power(namepower);
+                name_Power[i] = ability.getString("name");
+                pk.setName_Power(name_Power);
 
             }
 
@@ -50,6 +97,17 @@ public class PokeData {
 
         }
 
+    }
+
+    public void getWeight(JSONObject info){
+
+        try {
+            weight = info.getString("weight");
+            pk.setWeight(weight);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -6,10 +6,10 @@ import org.json.JSONArray;
 
 public class Pokemon {
 
-    private String name;
+    private String name,weight,front_default_url, back_image_url;
     private String[] name_Power;
     private JSONObject image;
-    private JSONArray abilities;
+
 
 
     public String getName() {
@@ -36,14 +36,29 @@ public class Pokemon {
         this.image = image;
     }
 
-    public JSONArray getAbilities() {
-        return abilities;
+    public String getFront_default_url() {
+        return front_default_url;
     }
 
-    public void setAbilities(JSONArray abilities) {
-        this.abilities = abilities;
+    public void setFront_default_url(String front_default_url) {
+        this.front_default_url = front_default_url;
     }
 
+    public String getBack_image_url() {
+        return back_image_url;
+    }
+
+    public void setBack_image_url(String back_image_url) {
+        this.back_image_url = back_image_url;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
 
     public Pokemon() {
 
@@ -51,10 +66,14 @@ public class Pokemon {
 
     }
 
-    public Pokemon(String name, String[] name_Power, JSONObject image, JSONArray abilities) {
+    public Pokemon(String name,String weight,String fdu, String bdu, String[] name_Power, JSONObject image) {
+
         this.name = name;
+        this.weight = weight;
+        this.front_default_url = fdu;
+        this.back_image_url = bdu;
         this.name_Power = name_Power;
         this.image = image;
-        this.abilities = abilities;
+
     }
 }
