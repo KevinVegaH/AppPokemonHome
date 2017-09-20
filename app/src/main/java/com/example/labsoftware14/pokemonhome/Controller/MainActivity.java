@@ -2,9 +2,10 @@ package com.example.labsoftware14.pokemonhome.Controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
-
-
+import android.view.View;
+import android.widget.ImageView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -15,10 +16,31 @@ import com.example.labsoftware14.pokemonhome.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button btnGRandom;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main)
+
+
+        btnGRandom = (Button) findViewById(R.id.btnRandom);
+        btnGRandom.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int indicePokemon = (int) (Math.random()*200);
+                int indicePokemon2 = (int) (Math.random()*200);
+                String url = ("http://pokeapi.co/api/v2/pokemon/"+indicePokemon);
+                String url2 = ("http://pokeapi.co/api/v2/pokemon/"+indicePokemon2);
+                getJson(url);
+                getJson2(url2);
+            }
+        });
+
+
+
+
+
 
 
         final TextView mTextView = (TextView) findViewById(R.id.text);
@@ -39,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
                 mTextView.setText("That didn't work!");
             }
         });
+
+
+
+
+
+
+
+
         // Add the request to the RequestQueue.
         PokeSingleton.getInstance(this).addToRequestQueue(stringRequest);
 
