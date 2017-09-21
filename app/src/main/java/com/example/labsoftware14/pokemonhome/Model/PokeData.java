@@ -17,7 +17,7 @@ public class PokeData {
     private static  JSONObject info_Sprites;
 
     Pokemon pk = new Pokemon();
-    PokeData Pd = new PokeData();
+    //PokeData Pd = new PokeData();
 
     public void getName(JSONObject info){
         try {
@@ -50,6 +50,9 @@ public class PokeData {
 
             front_default_url  = image.getString("front_default");
             pk.setFront_default_url(front_default_url);
+
+            System.out.println("Aqui" + pk.getFront_default_url());
+
 
         }catch(JSONException e){
 

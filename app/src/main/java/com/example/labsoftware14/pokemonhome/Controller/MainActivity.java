@@ -1,7 +1,9 @@
 package com.example.labsoftware14.pokemonhome.Controller;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
@@ -10,6 +12,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.example.labsoftware14.pokemonhome.Model.PokeData;
 import com.example.labsoftware14.pokemonhome.Model.PokeSingleton;
 import com.example.labsoftware14.pokemonhome.Model.Pokemon;
@@ -20,12 +23,17 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     Button btnGRandom;
-    String image;
+    String image, name;
+    Context contexto=this;
+    PokeData pd = new PokeData();
+    Pokemon pk = new Pokemon();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         btnGRandom = (Button) findViewById(R.id.btnRandom);
         btnGRandom.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 getJson(url);
                 //getJson2(url2);
             }
+
+
 
 
         });
@@ -72,21 +82,37 @@ public class MainActivity extends AppCompatActivity {
         PokeSingleton.getInstance(this).addToRequestQueue(stringRequest); */
 
 
+    public void metodo(){
+
+        System.out.println("Aqui: "+pk.getFront_default_url());
+
+    }
+
 
 
     public void getJson(String url) {
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
-                    PokeData pd = new PokeData();
-                    Pokemon pk = new Pokemon();
+
 
                     @Override
                     public void onResponse(JSONObject response) {
 
                         pd.getImage_Front(response);
 
+
+                        //name = pk.getName();
                         image = pk.getFront_default_url();
+                        ImageView img = (ImageView) findViewById(R.id.imagePoke1) ;
+
+
+                        System.out.println("Aqui: "+ image);
+
+                        Glide.with(contexto)
+                                .load(image)
+                                .into(img);
+
 
 
                     }
