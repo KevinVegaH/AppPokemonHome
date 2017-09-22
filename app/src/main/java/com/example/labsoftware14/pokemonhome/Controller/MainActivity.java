@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnGRandom;
     String image, name;
-    Context contexto=this;
+    Context contexto= this;
     PokeData pd = new PokeData();
-    Pokemon pk = new Pokemon();
+
 
 
     @Override
@@ -38,12 +38,13 @@ public class MainActivity extends AppCompatActivity {
         btnGRandom = (Button) findViewById(R.id.btnRandom);
         btnGRandom.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int indicePokemon = (int) (Math.random()*200);
-                int indicePokemon2 = (int) (Math.random()*200);
-                String url = ("http://pokeapi.co/api/v2/pokemon/"+indicePokemon);
-                String url2 = ("http://pokeapi.co/api/v2/pokemon/"+indicePokemon2);
+
+                int pokePut = (int) (Math.random()*500);
+                int pokePut2 = (int) (Math.random()*500);
+                String url = ("http://pokeapi.co/api/v2/pokemon/"+pokePut);
+                String url2 = ("http://pokeapi.co/api/v2/pokemon/"+pokePut2);
                 getJson(url);
-                //getJson2(url2);
+                getJson2(url2);
             }
 
 
@@ -52,43 +53,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
-
-    /*
-
-        final TextView mTextView = (TextView) findViewById(R.id.text);
-
-        String url ="http://www.google.com";
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        mTextView.setText("Response is: "+ response.substring(0,500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                mTextView.setText("That didn't work!");
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        PokeSingleton.getInstance(this).addToRequestQueue(stringRequest); */
-
-
-    public void metodo(){
-
-        System.out.println("Aqui: "+pk.getFront_default_url());
-
-    }
-
-
 
     public void getJson(String url) {
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
@@ -99,15 +63,20 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
 
+
+
+                        pd.getName(response);
                         pd.getImage_Front(response);
 
 
-                        //name = pk.getName();
-                        image = pk.getFront_default_url();
+                        name = pd.pk.getName();
+                        image = pd.pk.getFront_default_url();
+
                         ImageView img = (ImageView) findViewById(R.id.imagePoke1) ;
+                        TextView nam = (TextView) findViewById(R.id.vs);
 
 
-                        System.out.println("Aqui: "+ image);
+                        System.out.println("Aqui: "+ name);
 
                         Glide.with(contexto)
                                 .load(image)
@@ -128,6 +97,55 @@ public class MainActivity extends AppCompatActivity {
 
         // Access the RequestQueue through your singleton class.
         PokeSingleton.getInstance(this).addToRequestQueue(jsObjRequest);
+
+
+    }
+
+    public void getJson2(String url) {
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+
+                        pd.getName(response);
+                        pd.getImage_Front(response);
+
+
+                        name = pd.pk.getName();
+                        image = pd.pk.getFront_default_url();
+
+                        ImageView img = (ImageView) findViewById(R.id.imagePoke2) ;
+                        TextView nam = (TextView) findViewById(R.id.vs);
+
+
+                        System.out.println("Aqui: "+ name);
+
+                        Glide.with(contexto)
+                                .load(image)
+                                .into(img);
+
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+
+                    }
+                });
+
+
+        // Access the RequestQueue through your singleton class.
+        PokeSingleton.getInstance(this).addToRequestQueue(jsObjRequest);
+
+
     }
 
 

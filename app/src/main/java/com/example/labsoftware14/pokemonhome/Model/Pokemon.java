@@ -1,7 +1,6 @@
 package com.example.labsoftware14.pokemonhome.Model;
 
 import org.json.JSONObject;
-import org.json.JSONArray;
 
 
 public class Pokemon {
