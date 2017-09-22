@@ -3,7 +3,6 @@ package com.example.labsoftware14.pokemonhome.Controller;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
@@ -11,11 +10,9 @@ import android.widget.ImageView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.example.labsoftware14.pokemonhome.Model.PokeData;
 import com.example.labsoftware14.pokemonhome.Model.PokeSingleton;
-import com.example.labsoftware14.pokemonhome.Model.Pokemon;
 import com.example.labsoftware14.pokemonhome.R;
 import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONObject;
@@ -35,16 +32,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        btnGRandom = (Button) findViewById(R.id.btnRandom);
+        btnGRandom = (Button) findViewById(R.id.Random);
         btnGRandom.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View v) {
 
                 int pokePut = (int) (Math.random()*500);
                 int pokePut2 = (int) (Math.random()*500);
+
                 String url = ("http://pokeapi.co/api/v2/pokemon/"+pokePut);
+
                 String url2 = ("http://pokeapi.co/api/v2/pokemon/"+pokePut2);
-                getJson(url);
-                getJson2(url2);
+                get(url);
+                get2(url2);
             }
 
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getJson(String url) {
+    public void get(String url) {
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getJson2(String url) {
+    public void get2(String url) {
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
