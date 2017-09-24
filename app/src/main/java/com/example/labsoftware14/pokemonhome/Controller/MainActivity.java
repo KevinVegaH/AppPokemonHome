@@ -1,6 +1,7 @@
 package com.example.labsoftware14.pokemonhome.Controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -19,11 +20,14 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnGRandom;
-    String image, name;
-    Context contexto= this;
-    PokeData pd = new PokeData();
+    TextView nam, ty;
+    Button btnGRandom, btnPelea;
+    ImageView img;
+    String image, name, type;
+    Context contexto = this;
 
+    PokeData pd = new PokeData();
+    PokeData pd2 = new PokeData();
 
 
     @Override
@@ -33,26 +37,48 @@ public class MainActivity extends AppCompatActivity {
 
 
         btnGRandom = (Button) findViewById(R.id.Random);
+        btnPelea = (Button) findViewById(R.id.pelea);
+
+
         btnGRandom.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
 
+                // Random de pokemones, entre 500 //
                 int pokePut = (int) (Math.random()*500);
                 int pokePut2 = (int) (Math.random()*500);
-
                 String url = ("http://pokeapi.co/api/v2/pokemon/"+pokePut);
-
                 String url2 = ("http://pokeapi.co/api/v2/pokemon/"+pokePut2);
                 get(url);
                 get2(url2);
+                btnPelea.setEnabled(true); // habilita el boton de pelea //
+
+
+
             }
-
-
-
 
         });
 
+        btnPelea.setEnabled(false); // el boton de pelea esta desactivado //
+
+        btnPelea.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, PokeBattle.class);
+                intent.putExtra("name", pd.pk.getName());
+                intent.putExtra("name2", pd2.pk.getName());
+                System.out.println("Aca1 : " +pd.pk.getName());
+                System.out.println("Aca2 :"+ pd2.pk.getName());
+                startActivity(intent);
+            }
+        });
+
+
     }
+
+
+
 
     public void get(String url) {
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
@@ -63,24 +89,24 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
 
-
+                        img = (ImageView) findViewById(R.id.imagePoke1) ;
+                        nam = (TextView) findViewById(R.id.PokeName2);
+                        ty = (TextView) findViewById(R.id.pokeTipo2);
 
                         pd.getName(response);
+                        pd.GetType(response);
                         pd.getImage_Front(response);
 
-
                         name = pd.pk.getName();
+                        type = pd.pk.getType();
                         image = pd.pk.getFront_default_url();
 
-                        ImageView img = (ImageView) findViewById(R.id.imagePoke1) ;
-                        TextView nam = (TextView) findViewById(R.id.vs);
 
+                        nam.setText(name);
+                        ty.setText(type);
+                        Glide.with(contexto).load(image).into(img);
 
-                        System.out.println("Aqui: "+ name);
-
-                        Glide.with(contexto)
-                                .load(image)
-                                .into(img);
+                        System.out.println("Aqui: "+ type);
 
 
 
@@ -110,25 +136,23 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
 
+                        img = (ImageView) findViewById(R.id.imagePoke2) ;
+                        nam = (TextView) findViewById(R.id.PokeName);
+                        ty = (TextView) findViewById(R.id.pokeTipo);
 
+                        pd2.getName(response);
+                        pd2.getImage_Front(response);
+                        pd2.GetType(response);
 
-                        pd.getName(response);
-                        pd.getImage_Front(response);
+                        name = pd2.pk.getName();
+                        type = pd2.pk.getType();
+                        image = pd2.pk.getFront_default_url();
 
-
-                        name = pd.pk.getName();
-                        image = pd.pk.getFront_default_url();
-
-                        ImageView img = (ImageView) findViewById(R.id.imagePoke2) ;
-                        TextView nam = (TextView) findViewById(R.id.vs);
-
+                        nam.setText(name);
+                        ty.setText(type);
+                        Glide.with(contexto).load(image).into(img);
 
                         System.out.println("Aqui: "+ name);
-
-                        Glide.with(contexto)
-                                .load(image)
-                                .into(img);
-
 
 
                     }

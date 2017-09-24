@@ -5,11 +5,18 @@ import org.json.JSONObject;
 
 public class Pokemon {
 
-    private String name,weight,front_default_url, back_image_url;
+    private String name,weight,front_default_url, back_image_url, type;
     private String[] name_Power;
     private JSONObject image;
 
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getName() {
         return name;
@@ -65,7 +72,7 @@ public class Pokemon {
 
     }
 
-    public Pokemon(String name,String weight,String fdu, String bdu, String[] name_Power, JSONObject image) {
+    public Pokemon(String name,String weight,String fdu, String bdu, String[] name_Power, JSONObject image, String type) {
 
         this.name = name;
         this.weight = weight;
@@ -73,6 +80,7 @@ public class Pokemon {
         this.back_image_url = bdu;
         this.name_Power = name_Power;
         this.image = image;
+        this.type = type;
 
     }
 }
