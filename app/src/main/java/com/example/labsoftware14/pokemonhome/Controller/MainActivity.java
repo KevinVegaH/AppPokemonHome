@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 // Random de pokemones, entre 500 //
                 int pokePut = (int) (Math.random()*500);
                 int pokePut2 = (int) (Math.random()*500);
-                String url = ("http://pokeapi.co/api/v2/pokemon/"+pokePut);
-                String url2 = ("http://pokeapi.co/api/v2/pokemon/"+pokePut2);
+                String url = ("https://pokeapi.co/api/v2/pokemon/"+pokePut);
+                String url2 = ("https://pokeapi.co/api/v2/pokemon/"+pokePut2);
                 get(url);
                 get2(url2);
                 btnPelea.setEnabled(true); // habilita el boton de pelea //
