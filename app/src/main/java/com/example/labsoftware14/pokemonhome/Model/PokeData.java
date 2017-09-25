@@ -11,9 +11,9 @@ import org.json.*;
 public class PokeData {
 
     private String name,weight, front_default_url, back_image_url,typ, typ2, typp;
-    private JSONArray abilities;
+    private static JSONArray abilities;
     private  static JSONArray types;
-    private String[] name_Power;
+    private static String[] name_Power;
     private static String[] type;
     private JSONObject image;
     private static  JSONObject info_Sprites;
@@ -33,7 +33,7 @@ public class PokeData {
     }// --> Un metodo que para obtener el nombre del pokemon
     //  tomandolo del Json y los mandolo al objeto pokemon.
 
-    public static JSONObject getSprites(JSONObject info){
+    private static JSONObject getSprites(JSONObject info){
         info_Sprites = null;
         try {
             info_Sprites = info.getJSONObject("sprites");
@@ -80,17 +80,19 @@ public class PokeData {
     }// --> Un metodo para obtener la imagen de espaldas
     // de un pokemon tomandola del Json y la manda al objeto pokemon.
 
-    public void getName_Power(JSONObject info){
+    public static String getName_Power(JSONObject info, int num){
+
+        name_Power = new String[2];
 
         try {
             abilities = info.getJSONArray("abilities");
 
-            for (int i = 0; i < abilities.length(); i++){
+            for (int i = 0; i < 2; i++){
                 JSONObject c = abilities.getJSONObject(i);
 
                 JSONObject ability = c.getJSONObject("ability");
                 name_Power[i] = ability.getString("name");
-                pk.setName_Power(name_Power);
+
 
 
             }
@@ -100,9 +102,23 @@ public class PokeData {
             e.printStackTrace();
 
         }
-
+    return name_Power[num];
     }// -->  Un metodo que almacena en un vector los
     // poderes de un pokemon  tomandolos del Json y los manda al objeto pokemon.
+
+    public void Get_power1(JSONObject info){
+
+        name = PokeData.getName_Power(info,0);
+        pk.setPower1(name);
+    }
+
+    public void  Get_power2(JSONObject info){
+
+        name = PokeData.getName_Power(info,1);
+        pk.setPower2(name);
+
+
+    }
 
     public void getWeight(JSONObject info){
 
@@ -117,7 +133,7 @@ public class PokeData {
     } // -->  Un metodo que almacena el peso del pokemon tomandolo
     // del Json y lo manda al objeto pokemon.
 
-    public static  String getTypes(JSONObject info, int num) {
+    private static  String getTypes(JSONObject info, int num) {
 
         type = new String [2];
 

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextView nam, ty;
     Button btnGRandom, btnPelea;
     ImageView img;
-    String image, name, type;
+    String image, name, type, imageBack;
     Context contexto = this;
 
     PokeData pd = new PokeData();
@@ -68,16 +68,21 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, PokeBattle.class);
                 intent.putExtra("name", pd.pk.getName());
                 intent.putExtra("name2", pd2.pk.getName());
-                System.out.println("Aca1 : " +pd.pk.getName());
-                System.out.println("Aca2 :"+ pd2.pk.getName());
+                intent.putExtra("imagenBack",pd.pk.getBack_image_url());
+                intent.putExtra("imagenBack2",pd2.pk.getBack_image_url());
+                intent.putExtra("imageFront",pd.pk.getFront_default_url());
+                intent.putExtra("imageFront2",pd2.pk.getFront_default_url());
+                intent.putExtra("namePower1",pd.pk.getPower1());
+                intent.putExtra("namePower2",pd.pk.getPower2());
+                intent.putExtra("namePower3",pd2.pk.getPower1());
+                intent.putExtra("namePower4",pd2.pk.getPower2());
+
                 startActivity(intent);
             }
         });
 
 
     }
-
-
 
 
     public void get(String url) {
@@ -93,9 +98,13 @@ public class MainActivity extends AppCompatActivity {
                         nam = (TextView) findViewById(R.id.PokeName2);
                         ty = (TextView) findViewById(R.id.pokeTipo2);
 
+
                         pd.getName(response);
                         pd.GetType(response);
                         pd.getImage_Front(response);
+                        pd.getImage_Back(response);
+                        pd.Get_power1(response);
+                        pd.Get_power2(response);
 
                         name = pd.pk.getName();
                         type = pd.pk.getType();
@@ -106,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                         ty.setText(type);
                         Glide.with(contexto).load(image).into(img);
 
-                        System.out.println("Aqui: "+ type);
+                        System.out.println("Aqui: "+ pd.pk.getPower1());
 
 
 
@@ -143,6 +152,9 @@ public class MainActivity extends AppCompatActivity {
                         pd2.getName(response);
                         pd2.getImage_Front(response);
                         pd2.GetType(response);
+                        pd2.getImage_Back(response);
+                        pd2.Get_power1(response);
+                        pd2.Get_power2(response);
 
                         name = pd2.pk.getName();
                         type = pd2.pk.getType();

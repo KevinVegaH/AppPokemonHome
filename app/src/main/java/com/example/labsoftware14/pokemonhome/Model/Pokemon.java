@@ -5,10 +5,25 @@ import org.json.JSONObject;
 
 public class Pokemon {
 
-    private String name,weight,front_default_url, back_image_url, type;
+    private String name,weight,front_default_url, back_image_url, type, power1, power2;
     private String[] name_Power;
     private JSONObject image;
 
+    public String getPower2() {
+        return power2;
+    }
+
+    public void setPower2(String power2) {
+        this.power2 = power2;
+    }
+
+    public String getPower1() {
+        return power1;
+    }
+
+    public void setPower1(String power1) {
+        this.power1 = power1;
+    }
 
     public String getType() {
         return type;
