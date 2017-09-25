@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, PokeBattle.class);
                 intent.putExtra("name", pd.pk.getName());
                 intent.putExtra("name2", pd2.pk.getName());
-                intent.putExtra("imagenBack",pd.pk.getBack_image_url());
                 intent.putExtra("imagenBack2",pd2.pk.getBack_image_url());
                 intent.putExtra("imageFront",pd.pk.getFront_default_url());
                 intent.putExtra("imageFront2",pd2.pk.getFront_default_url());
@@ -76,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("namePower2",pd.pk.getPower2());
                 intent.putExtra("namePower3",pd2.pk.getPower1());
                 intent.putExtra("namePower4",pd2.pk.getPower2());
+                intent.putExtra("exp",pd.pk.getExperiencia());
+                intent.putExtra("exp2",pd2.pk.getExperiencia());
 
                 startActivity(intent);
             }
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         pd.getImage_Back(response);
                         pd.Get_power1(response);
                         pd.Get_power2(response);
+                        pd.GetExp(response);
 
                         name = pd.pk.getName();
                         type = pd.pk.getType();
@@ -155,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                         pd2.getImage_Back(response);
                         pd2.Get_power1(response);
                         pd2.Get_power2(response);
+                        pd2.GetExp(response);
 
                         name = pd2.pk.getName();
                         type = pd2.pk.getType();

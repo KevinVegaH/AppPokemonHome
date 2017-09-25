@@ -10,7 +10,7 @@ import org.json.*;
 
 public class PokeData {
 
-    private String name,weight, front_default_url, back_image_url,typ, typ2, typp;
+    private String name,weight, front_default_url, back_image_url,typ, typ2, typp, experiencia;
     private static JSONArray abilities;
     private  static JSONArray types;
     private static String[] name_Power;
@@ -110,7 +110,7 @@ public class PokeData {
 
         name = PokeData.getName_Power(info,0);
         pk.setPower1(name);
-    }
+    } //--> se  obtiene un poder del Json
 
     public void  Get_power2(JSONObject info){
 
@@ -118,7 +118,7 @@ public class PokeData {
         pk.setPower2(name);
 
 
-    }
+    } //-->  se  obtiene un poder del Json
 
     public void getWeight(JSONObject info){
 
@@ -182,7 +182,18 @@ public class PokeData {
     } // -->  Este metodo obtiene Tipo del Vector Type
     // y lo envia al objeto pokemon.
 
+    public void GetExp(JSONObject info){
 
+        try {
+            experiencia = info.getString("base_experience");
+            pk.setExperiencia(experiencia);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    } //--> traemos la experiencia del pokemon y la mandamos al objeto
 
 
 

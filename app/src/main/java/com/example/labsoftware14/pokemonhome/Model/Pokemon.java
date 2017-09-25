@@ -3,11 +3,19 @@ package com.example.labsoftware14.pokemonhome.Model;
 import org.json.JSONObject;
 
 
-public class Pokemon {
+public class Pokemon { // Objeto que contiene los datos del pokemon //
 
-    private String name,weight,front_default_url, back_image_url, type, power1, power2;
+    private String name,weight,front_default_url, back_image_url, type, power1, power2, experiencia;
     private String[] name_Power;
     private JSONObject image;
+
+    public String getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(String experiencia) {
+        this.experiencia = experiencia;
+    }
 
     public String getPower2() {
         return power2;
