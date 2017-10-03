@@ -82,6 +82,7 @@ public class PokeData {
 
     public static String getName_Power(JSONObject info, int num){
 
+
         name_Power = new String[2];
 
         try {
@@ -107,6 +108,7 @@ public class PokeData {
     // poderes de un pokemon  tomandolos del Json y los manda al objeto pokemon.
 
     public void Get_power1(JSONObject info){
+
 
         name = PokeData.getName_Power(info,0);
         pk.setPower1(name);
