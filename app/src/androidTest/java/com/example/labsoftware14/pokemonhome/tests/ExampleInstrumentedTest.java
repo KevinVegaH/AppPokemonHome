@@ -1,4 +1,4 @@
-package com.example.labsoftware14.pokemonhome;
+package com.example.labsoftware14.pokemonhome.tests;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
