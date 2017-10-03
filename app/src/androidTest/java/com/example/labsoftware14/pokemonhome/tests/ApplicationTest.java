@@ -30,7 +30,6 @@ public class ApplicationTest extends ApplicationTestCase<Application>{
     PokeData pd = new PokeData();
     Pokemon pk = new Pokemon();
 
-
     public void test_esto_siempre_pasa(){
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
@@ -43,7 +42,9 @@ public class ApplicationTest extends ApplicationTestCase<Application>{
 
 
                         pd.getImage_Front(response);
-                        assertTrue(pd.pk.getFront_default_url().contains(".png"));
+                        String imagen = pk.getFront_default_url();
+                        assertTrue();
+                        //System.out.println( "ACA" +pd.pk.getFront_default_url());
 
                     }
                 }, new Response.ErrorListener() {
