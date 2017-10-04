@@ -43,7 +43,7 @@ public class ApplicationTest extends ApplicationTestCase<Application>{
 
                         pd.getImage_Front(response);
                         String imagen = pk.getFront_default_url();
-                        assertTrue();
+                        assertTrue(imagen.contains(".png"));
                         //System.out.println( "ACA" +pd.pk.getFront_default_url());
 
                     }
