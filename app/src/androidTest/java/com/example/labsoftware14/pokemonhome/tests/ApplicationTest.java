@@ -2,6 +2,7 @@ package com.example.labsoftware14.pokemonhome.tests;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.test.InstrumentationRegistry;
 import android.test.ApplicationTestCase;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ import com.example.labsoftware14.pokemonhome.Model.Pokemon;
 
 import org.json.JSONObject;
 
+import static org.junit.Assert.assertEquals;
+
 
 /**
  * Created by kevin_000 on 03/10/2017.
@@ -30,7 +33,7 @@ public class ApplicationTest extends ApplicationTestCase<Application>{
     PokeData pd = new PokeData();
     Pokemon pk = new Pokemon();
 
-    public void test_esto_siempre_pasa(){
+    public void testImage(){
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, "https://pokeapi.co/api/v2/pokemon/3/", null, new Response.Listener<JSONObject>() {
@@ -65,6 +68,7 @@ public class ApplicationTest extends ApplicationTestCase<Application>{
 
 
     }
+
 
 
 }

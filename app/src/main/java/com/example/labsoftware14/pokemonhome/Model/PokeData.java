@@ -197,6 +197,12 @@ public class PokeData {
 
     } //--> traemos la experiencia del pokemon y la mandamos al objeto
 
+    public String getPokeUrl(int a){
+
+        String url = "https://pokeapi.co/api/v2/pokemon/" + a + "";
+
+        return url;
+    }
 
 
 
